@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('news','Api\newsApiController@GetAllnews');
-Route::get('news/{id}','Api\newsApiController@getNews');
-Route::post('news','Api\newsApiController@createNews');
-Route::put('news/{id}','Api\newsApiController@updateNews');
-Route::delete('news/{id}','Api\newsApiController@deleteStudent');
+Route::get('news/{id}','Api\newsApiController@GetNews');
+Route::post('news','Api\newsApiController@CreateNews');
+Route::put('news/{id}','Api\newsApiController@UpdateNews');
+Route::delete('news/{id}','Api\newsApiController@DeleteNews');
 

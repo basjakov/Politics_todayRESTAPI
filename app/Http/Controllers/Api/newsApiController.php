@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\news;
+use App\News;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class newsApiController extends Controller
             $news = news::get()->toJson(JSON_PRETTY_PRINT);
             return response($news,200);
     }
-    public function createNews(Request $request){
+    public function CreateNews(Request $request){
             $news = new news;
 
             $news->title = $request->title;
@@ -27,7 +27,7 @@ class newsApiController extends Controller
                 'message'=>'News created successfuled',
             ],201);
     }
-    public function getNews($id){
+    public function GetNews($id){
             if(news::where('id',$id)->exists()){
                 $news = news::where('id',$id)->get()->toJson(JSON_PRETTY_PRINT);
                 return response($news,200);
@@ -37,7 +37,7 @@ class newsApiController extends Controller
                 ],404);
             }
     }
-    public function updateNews(Request $request,$id){
+    public function UpdateNews(Request $request,$id){
         if(news::where('id',$id)->exists()){
             $news = news::findOrFail($id);
 
@@ -51,13 +51,11 @@ class newsApiController extends Controller
             return response()->json([
                 'message'=>'News updated successfuled',
             ],201);
-        }else{
-            return response()->json([
-                'message'=>'News not found',
-            ],201);
-        }    
+        }
+        return response()->json(['message'=>'News not found',],201);
+          
     }
-    public function deleteStudent($id){
+    public function DeleteNews($id){
         if(news::where('id',$id)->exists()){
             $news = news::findOrFail($id);
 
